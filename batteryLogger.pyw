@@ -2,6 +2,7 @@ import psutil
 import datetime
 import os
 import time
+from tendo import singleton
 
 def logTask():
     wpath = os.path.expanduser('~/batteryLog.csv')
@@ -13,6 +14,10 @@ def logTask():
             battery.percent
         ))
 
-while True:
-    logTask()
-    time.sleep(60)
+me = singleton.SingleInstance()
+
+if __name__ == '__main__':
+    # Ignore unused variable warning: me should live until the end of the script.
+    while True:
+        logTask()
+        time.sleep(60)
